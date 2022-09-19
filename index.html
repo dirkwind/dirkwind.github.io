@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica
+        }
+        .center {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 800px;
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .inlined {
+            display: inline-block;
+            padding: 1rem;
+            vertical-align: top;
+        }
+    </style>
+    <head>
+        <title>Pong</title>
+    </head>
+    <body class="center">
+        <canvas id="canvas" width='500' height='300' class="center"></canvas>
+        <div class="inlined">
+            <h1>Controls</h1>
+            <p class="text-left">
+                Player 1 Up: w <br>
+                Player 1 Down: s <br>
+                Player 2 Up: ArrowUp <br>
+                Player 2 Down: ArrowDown <br>
+                Pause: Space <br>
+                Reset: r <br>
+            </p>
+        </div>
+        <div class="inlined">
+            <h1>Settings</h1>
+            <form class="text-left">
+                <label for="player1Name">Player 1 Name: </label>
+                <input type="text" id="player1Name"> 
+                <input type="color" id="player1Color"> <br>
+                <label for="player2Name">Player 2 Name: </label>
+                <input type="text" id="player2Name"> 
+                <input type="color" id="player2Color"> <br>
+                <label for="playerSpeed">Player Speed: </label>
+                <input type="number" id="playerSpeed"> <br>
+                <label for="ballSpeed">Ball Speed: </label>
+                <input type="number" id="ballSpeed"> 
+                <input type="button" onClick="addBall()" value="Add Ball">
+                <input type="color" id="ballColor"> <br>
+                <label for="winningScore">Winning Score: </label>
+                <input type="number" id="winningScore"> <br>
+                
+            </form>
+        </div>
+        
+    </body>
+    <script src="index.js"></script>
+</html>

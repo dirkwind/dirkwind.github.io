@@ -19,7 +19,7 @@ class Vec2 {
      * @param {number|Vector} x 
      * @param {number|undefined} y 
      */
-    add(x, y) {
+    iadd(x, y) {
         if (y !== undefined) {
             this.x += x;
             this.y += y;
@@ -31,10 +31,23 @@ class Vec2 {
 
     /**
      * 
+     * @param {number|Vector} x 
+     * @param {number|undefined} y 
+     */
+    add(x, y) {
+        if (y !== undefined) {
+            return new this(this.x + x, this.y + y)
+        }
+        // x is a vector
+        return new Vec2(this.x + x.x, this.y + x.y)
+    }
+
+    /**
+     * 
      * @param {number|Vec2} x 
      * @param {number?} y 
      */
-    sub(x, y) {
+    isub(x, y) {
         if (y !== undefined) {
             this.x -= x;
             this.y -= y;
@@ -44,16 +57,36 @@ class Vec2 {
         }
     }
 
+    /**
+     * 
+     * @param {number|Vec2} x 
+     * @param {number?} y 
+     */
+    sub(x, y) {
+        if (y !== undefined) {
+            return new this(this.x - x, this.y - y)
+        }
+        // x is a vector
+        return new Vec2(this.x - x.x, this.y - x.y)
+    }
+
     inverse() {
         return new Vec2(-this.x, -this.y);
+    }
+
+    iscale(x, y) {
+        if (y === undefined) {
+            y = x;
+        }
+        this.x *= x;
+        this.y *= y;
     }
 
     scale(x, y) {
         if (y === undefined) {
             y = x;
         }
-        this.x *= x;
-        this.y *= y;
+        return new Vec2(this.x * x, this.y * y);
     }
 
     /**

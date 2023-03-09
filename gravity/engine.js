@@ -22,13 +22,16 @@ class PhysEngine {
      */
     update(dt) {
         for (const obj of this.objects) {
-            // for (const other in self.objects) {
-            //     if (obj === other) {
-            //         continue;
-            //     }
-            //     a = (G * other.mass)/obj.pos.dist(other.pos);
-            //     other.acc.iadd(obj.pos.sub(other.pos).unit().scale(a));
-            // }
+
+            obj.acc.set(0)
+            for (const other of this.objects) {
+                if (obj === other) {
+                    continue;
+                }
+                const r = obj.pos.dist(other.pos);
+                const a = (G * other.mass)/(r * r);
+                obj.acc.iadd(other.pos.sub(obj.pos).unit().scale(a));
+            }
 
             obj.vel.iadd(obj.acc.scale(dt));
             obj.pos.iadd(obj.vel.scale(dt));

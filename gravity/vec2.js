@@ -10,6 +10,9 @@ class Vec2 {
     }
 
     set(x, y) {
+        if (y == null) {
+            y = x;
+        }
         this.x = x;
         this.y = y;
     }
@@ -75,7 +78,7 @@ class Vec2 {
     }
 
     iscale(x, y) {
-        if (y === undefined) {
+        if (y == null) {
             y = x;
         }
         this.x *= x;
@@ -83,7 +86,7 @@ class Vec2 {
     }
 
     scale(x, y) {
-        if (y === undefined) {
+        if (y == null) {
             y = x;
         }
         return new Vec2(this.x * x, this.y * y);
@@ -108,7 +111,7 @@ class Vec2 {
     }
 
     dist(other) {
-        return this.copy().sub(other).norm();
+        return this.sub(other).magnitude();
     }
 
     /**

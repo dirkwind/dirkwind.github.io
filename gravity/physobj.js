@@ -8,7 +8,7 @@ class PhysObj {
      * @param {Vec2} vel 
      * @param {Vec2} acc 
      */
-    constructor(color, mass, pos, vel = Vec2(0, 0), acc = Vec2(0, 0)) {
+    constructor(color, mass, pos, vel = new Vec2(0, 0), acc = new Vec2(0, 0)) {
         this.color = color;
         this.mass = mass;
         this.pos = pos;
@@ -21,7 +21,7 @@ class PhysObj {
     }
 
     copy() {
-        return PhysObj(this.color, this.mass, this.pos, this.vel, this.acc);
+        return PhysObj(this.color, this.mass, this.pos.copy(), this.vel.copy(), this.acc.copy());
     }
 
     checkCollision(other) {
@@ -48,13 +48,13 @@ class Circle extends PhysObj {
      * @param {Vec2} vel 
      * @param {Vec2} acc 
      */
-    constructor(color, radius, mass, pos, vel = Vec2(0, 0), acc = Vec2(0, 0)) {
+    constructor(color, radius, mass, pos, vel = new Vec2(0, 0), acc = new Vec2(0, 0)) {
         super(color, mass, pos, vel, acc);
         this.radius = radius;
     }
 
     copy() {
-        return Circle(this.radius, this.color, this.mass, this.pos, this.vel, this.acc);
+        return new Circle(this.radius, this.color, this.mass, this.pos.copy(), this.vel.copy(), this.acc.copy());
     }
 
     checkCollision(other) {

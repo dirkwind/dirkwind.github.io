@@ -18,24 +18,25 @@ class Vec2 {
     }
 
     /**
-     * 
-     * @param {number|Vector} x 
-     * @param {number|undefined} y 
+     * Adds x and y to this vector in-place
+     * @param {number|Vec2} x The x component of the vector to be added, or the vector to be added itself
+     * @param {number|undefined} y the y component of the vector to be added. Do not provide this if x is a vector.
      */
     iadd(x, y) {
-        if (y !== undefined) {
-            this.x += x;
-            this.y += y;
-        } else { // x is a vector
+        if (x instanceof Vec2) {
             this.x += x.x;
             this.y += x.y;
+        } else {
+            this.x += x;
+            this.y += y;
         }
     }
 
     /**
-     * 
-     * @param {number|Vector} x 
-     * @param {number|undefined} y 
+     * Adds this vector to x and y or another vector and returns the result as a new vector.
+     * @param {number|Vector} x The x component of the vector to be subtracted, or the vector to be subtracted itself
+     * @param {number|undefined} y the y component of the vector to be subtracted. Do not provide this if x is a vector.
+     * @returns {Vec2} the sum of this vector and (x, y) or the vector x
      */
     add(x, y) {
         if (y !== undefined) {
@@ -46,24 +47,25 @@ class Vec2 {
     }
 
     /**
-     * 
-     * @param {number|Vec2} x 
-     * @param {number?} y 
+     * Subtracts (x, y) or the vector x from this vector, in place.
+     * @param {number|Vec2} x The x component of the vector to be subtracted, or the vector to be subtracted itself
+     * @param {number?} y the y component of the vector to be subtracted. Do not provide this if x is a vector.
      */
     isub(x, y) {
-        if (y !== undefined) {
-            this.x -= x;
-            this.y -= y;
-        } else { // x is a vector
+        if (x instanceof Vec2) {
             this.x -= x.x;
             this.y -= x.y;
+        } else {
+            this.x -= x;
+            this.y -= y; 
         }
     }
 
     /**
-     * 
-     * @param {number|Vec2} x 
-     * @param {number?} y 
+     * Subtracts (x, y) or the vector x from this vector, returning the result as a new vector.
+     * @param {number|Vec2} x The x component of the vector to be subtracted, or the vector to be subtracted itself
+     * @param {number?} y the y component of the vector to be subtracted. Do not provide this if x is a vector.
+     * @returns {Vec2} The difference between this vector and (x, y) or the vector x
      */
     sub(x, y) {
         if (y !== undefined) {
@@ -77,6 +79,11 @@ class Vec2 {
         return new Vec2(-this.x, -this.y);
     }
 
+    /**
+     * Scalar multiplication; the scale of each component can be specified. Scaling is done in place.
+     * @param {number} x The x scale factor, or the scale factor of x and y if y is not provided.
+     * @param {number?} y The y scale factor.
+     */
     iscale(x, y) {
         if (y == null) {
             y = x;
@@ -85,6 +92,12 @@ class Vec2 {
         this.y *= y;
     }
 
+    /**
+     * Scalar multiplication; the scale of each component can be specified.
+     * @param {number} x The x scale factor, or the scale factor of x and y if y is not provided.
+     * @param {number?} y The y scale factor.
+     * @returns {Vec2} The scaled vector
+     */
     scale(x, y) {
         if (y == null) {
             y = x;
@@ -110,6 +123,11 @@ class Vec2 {
         return this.dot(other) == 0;
     }
 
+    /**
+     * 
+     * @param {Vec2} other 
+     * @returns {number} The distance between this and other
+     */
     dist(other) {
         return this.sub(other).magnitude();
     }
@@ -130,7 +148,7 @@ class Vec2 {
     magnitude() {
         return Math.sqrt(this.dot(this));
     }
-
+    
     copy() {
         return new Vec2(this.x, this.y);
     }
@@ -140,6 +158,6 @@ class Vec2 {
     }
 
     print() {
-        console.log(`(${this.x}, ${this.y})`);
+        console.log(this.toString());
     }
 }
